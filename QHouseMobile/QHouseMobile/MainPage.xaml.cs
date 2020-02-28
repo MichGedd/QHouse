@@ -17,5 +17,10 @@ namespace QHouseMobile
         {
             InitializeComponent();
         }
+
+        async void OnButtonClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new Signup());
+        }
     }
 }
