@@ -23,6 +23,7 @@ namespace QHouseMobile
         public Signup()
         {
             InitializeComponent();
+            httpClient.BaseAddress = new Uri(ApplicationResources.BaseURI);
         }
 
         void NameCompleted(object sender, EventArgs e)
@@ -57,7 +58,7 @@ namespace QHouseMobile
                 string payload = JsonConvert.SerializeObject(values);
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                var response = await httpClient.PostAsync("http://10.0.2.2:8080/students", content);
+                var response = await httpClient.PostAsync("students", content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 Debug.WriteLine(responseString);
