@@ -20,23 +20,25 @@ namespace QHouseMobile
 
         string name, email, password;
 
+        bool isStudent = true;
+
         public Signup()
         {
             InitializeComponent();
             httpClient.BaseAddress = new Uri(ApplicationResources.BaseURI);
         }
 
-        void NameCompleted(object sender, EventArgs e)
+        void NameChanged(object sender, TextChangedEventArgs e)
         {
             var text = ((Entry)sender).Text;
             name = text;
         }
-        void EmailCompleted(object sender, EventArgs e)
+        void EmailChanged(object sender, TextChangedEventArgs e)
         {
             var text = ((Entry)sender).Text;
             email = text;
         }
-        void PasswordCompleted(object sender, EventArgs e)
+        void PasswordChanged(object sender, TextChangedEventArgs e)
         {
             var text = ((Entry)sender).Text;
             password = text;
@@ -58,11 +60,28 @@ namespace QHouseMobile
                 string payload = JsonConvert.SerializeObject(values);
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                var response = await httpClient.PostAsync("students", content);
-                var responseString = await response.Content.ReadAsStringAsync();
+                String apiEndpoint = isStudent ? "student/create" : "landlord/create";
 
-                Debug.WriteLine(responseString);
+                try
+                {
+                    var response = await httpClient.PostAsync(apiEndpoint, content);
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine(responseString);
+                    await Navigation.PopAsync();
+
+                } catch(Exception exception)
+                {
+                    Debug.WriteLine(exception);
+                }
+
+                
             }
+        }
+
+        void OnToggle(object sender, ToggledEventArgs e)
+        {
+            isStudent = e.Value;
+            Debug.WriteLine(isStudent);
         }
     }
 }

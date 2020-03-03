@@ -4,33 +4,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="QHouseMobile.Signup">
+             x:Class="QHouseMobile.Login">
     <ContentPage.Content>
-        
         <StackLayout>
-            
-            <Label Text="Sign Up Here!"
+            <Label Text="Login!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-            <Entry TextChanged="NameChanged"
-                   Placeholder="Name" />
-            
-            <Entry TextChanged="EmailChanged"
-                   Placeholder="Email" />
-            
-            <Entry TextChanged="PasswordChanged"
-                   Placeholder="Password"
-                   IsPassword="True"/>
-
             <Switch IsToggled="True"
-                    Toggled="OnToggle"/>
+                    Toggled="OnSwitchToggled"/>
+            
+            <Entry Placeholder="Email"
+                   TextChanged="EmailChanged"/>
+            <Entry Placeholder="Password"
+                   TextChanged="PasswordChanged"/>
 
-            <Button Text="Sign Up"
-                    Clicked="OnSignUpClicked"/>
-
-
+            <Button Text="Login"
+                    Clicked="OnLoginClicked"/>
         </StackLayout>
-        
     </ContentPage.Content>
 </ContentPage>

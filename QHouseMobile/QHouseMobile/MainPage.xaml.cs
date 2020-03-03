@@ -18,9 +18,14 @@ namespace QHouseMobile
             InitializeComponent();
         }
 
-        async void OnButtonClicked(object sender, EventArgs args)
+        async void OnSignUpClicked(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new Signup());
+        }
+
+        async void OnLoginClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new Login());
         }
     }
 }

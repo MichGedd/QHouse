@@ -37,8 +37,9 @@ public class LandlordController {
     }
 
     @GetMapping
-    public @ResponseBody Landlord getStudent(@RequestBody Integer id)
+    public Landlord getStudent(@RequestParam Integer id)
     {
+        //int id_int = Integer.parseInt(id);
         if(landlordRepository.findById(id).isPresent())
         {
             return landlordRepository.findById(id).get();
