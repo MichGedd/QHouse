@@ -36,7 +36,7 @@ public class StudentController {
     }
 
     @GetMapping
-    public @ResponseBody Student getStudent(@RequestBody Integer id)
+    public @ResponseBody Student getStudent(@RequestParam Integer id)
     {
         if(studentRepository.findById(id).isPresent())
         {

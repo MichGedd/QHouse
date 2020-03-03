@@ -68,17 +68,25 @@ namespace QHouseMobile
                         throw new ArgumentException("Student with that email doesnt exist!");
                     }
 
-                    if (App.Current.Properties.ContainsKey("id"))
-                        App.Current.Properties["id"] = id;
-                    else
-                        App.Current.Properties.Add("id", id);
+                    apiEndpoint = isStudent ? "student" : "landlord";
+                    apiEndpoint = $"{apiEndpoint}?id={id}";
+                    Debug.WriteLine(apiEndpoint);
+                    var user = await httpClient.GetStringAsync(apiEndpoint);
 
-                    string userType = isStudent ? "student" : "landlord";
+                    Debug.WriteLine(user);
 
-                    if (App.Current.Properties.ContainsKey("type"))
-                        App.Current.Properties["type"] = userType;
+                    if (App.Current.Properties.ContainsKey("user"))
+                        App.Current.Properties["user"] = user;
                     else
-                        App.Current.Properties.Add("type", userType);
+                        App.Current.Properties.Add("user", user);
+
+                    /*Classes.Student student = JsonConvert.DeserializeObject<Classes.Student>(user);
+                    Debug.WriteLine("name: " + student.name + " email: " + student.email);*/
+
+                    if (isStudent)
+                        await Navigation.PushAsync(new StudentMainPage());
+                    else
+                        await Navigation.PushAsync(new LandlordMainPage());
 
 
                 } catch (Exception exception)

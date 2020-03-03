@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QHouseMobile.Classes
 {
-    class Student
+    class Landlord
     {
         public int id { get; set; }
         public string email { get; set; }
