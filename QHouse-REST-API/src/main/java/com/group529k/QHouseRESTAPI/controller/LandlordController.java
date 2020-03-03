@@ -14,8 +14,7 @@ public class LandlordController {
 
     @PostMapping
     @RequestMapping(path = "/create")
-    public @ResponseBody
-    String createStudent(@RequestBody Landlord landlord)
+    public @ResponseBody String createStudent(@RequestBody Landlord landlord)
     {
         landlordRepository.save(landlord);
         return "Done";
@@ -39,7 +38,6 @@ public class LandlordController {
     @GetMapping
     public Landlord getStudent(@RequestParam Integer id)
     {
-        //int id_int = Integer.parseInt(id);
         if(landlordRepository.findById(id).isPresent())
         {
             return landlordRepository.findById(id).get();
