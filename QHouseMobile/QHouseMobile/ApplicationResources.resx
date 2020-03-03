@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BaseURI" xml:space="preserve">
-    <value>http://10.0.2.2/</value>
+    <value>http://10.0.2.2:8080/</value>
     <comment>BaseURI for HTTP commands</comment>
   </data>
 </root>

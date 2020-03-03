@@ -12,10 +12,15 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
 
+        <Button Text="Login"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                Clicked="OnLoginClicked" />
+        
         <Button Text="Sign Up"
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
-                Clicked="OnButtonClicked" />
+                Clicked="OnSignUpClicked" />
     </StackLayout>
 
 </ContentPage>
