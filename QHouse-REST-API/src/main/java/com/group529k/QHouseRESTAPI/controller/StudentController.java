@@ -4,21 +4,45 @@ import com.group529k.QHouseRESTAPI.entity.Student;
 import com.group529k.QHouseRESTAPI.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/students")
+@RequestMapping("/student")
 public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
     @PostMapping
+    @RequestMapping(path = "/create")
     public @ResponseBody String createStudent(@RequestBody Student student)
     {
         studentRepository.save(student);
         return "Done";
+    }
+
+    @GetMapping
+    @RequestMapping(path = "/login")
+    public @ResponseBody String login(@RequestBody Student student)
+    {
+        for(Student s : studentRepository.findAll())
+        {
+            if(s.getEmail().equals(student.getEmail()) && s.getPassword().equals(student.getPassword()))
+            {
+                return s.getId().toString();
+            }
+        }
+
+        return "false";
+    }
+
+    @GetMapping
+    public @ResponseBody Student getStudent(@RequestBody Integer id)
+    {
+        if(studentRepository.findById(id).isPresent())
+        {
+            return studentRepository.findById(id).get();
+        }
+
+        return null;
     }
 }

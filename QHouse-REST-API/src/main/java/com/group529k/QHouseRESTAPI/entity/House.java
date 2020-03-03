@@ -13,4 +13,31 @@ public class House {
     @JoinColumn
     private Landlord parentLandlord;
 
+    private int numBedrooms;
+    private int numBathrooms;
+
+
+    public Landlord getParentLandlord() {
+        return parentLandlord;
+    }
+
+    public void setParentLandlord(Landlord parentLandlord) {
+        this.parentLandlord = parentLandlord;
+    }
+
+    public int getNumBedrooms() {
+        return numBedrooms;
+    }
+
+    public void setNumBedrooms(int numBedrooms) {
+        this.numBedrooms = numBedrooms;
+    }
+
+    public int getNumBathrooms() {
+        return numBathrooms;
+    }
+
+    public void setNumBathrooms(int numBathrooms) {
+        this.numBathrooms = numBathrooms;
+    }
 }

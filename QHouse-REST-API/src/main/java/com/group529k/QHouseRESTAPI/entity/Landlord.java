@@ -11,6 +11,7 @@ public class Landlord {
     private Integer id;
     private String name;
     private String password;
+    private String email;
 
     @OneToMany(mappedBy = "parentLandlord", cascade = CascadeType.ALL)
     private Set<House> postedHouses;
@@ -51,5 +52,13 @@ public class Landlord {
 
     public void setPostedHouses(Set<House> postedHouses) {
         this.postedHouses = postedHouses;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
