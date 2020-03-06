@@ -9,21 +9,12 @@ public class House {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn
-    private Landlord parentLandlord;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "landlord_id", referencedColumnName = "id")
+    private Landlord landlord;
 
     private int numBedrooms;
     private int numBathrooms;
-
-
-    public Landlord getParentLandlord() {
-        return parentLandlord;
-    }
-
-    public void setParentLandlord(Landlord parentLandlord) {
-        this.parentLandlord = parentLandlord;
-    }
 
     public int getNumBedrooms() {
         return numBedrooms;
@@ -39,5 +30,13 @@ public class House {
 
     public void setNumBathrooms(int numBathrooms) {
         this.numBathrooms = numBathrooms;
+    }
+
+    public Landlord getLandlord() {
+        return landlord;
+    }
+
+    public void setLandlord(Landlord landlord) {
+        this.landlord = landlord;
     }
 }

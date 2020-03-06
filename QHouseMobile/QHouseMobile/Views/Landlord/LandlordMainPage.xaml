@@ -7,9 +7,12 @@
              x:Class="QHouseMobile.LandlordMainPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Welcome Landlord!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Create House"
+                    Clicked="OnCreateHouse"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
