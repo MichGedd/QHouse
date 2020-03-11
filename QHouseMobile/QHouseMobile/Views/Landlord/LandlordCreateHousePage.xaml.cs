@@ -13,32 +13,51 @@ using Xamarin.Forms.Xaml;
 namespace QHouseMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LandlordMainPage : ContentPage
+    public partial class LandlordCreateHousePage : ContentPage
     {
-
-        Classes.Landlord user;
         HttpClient httpClient = new HttpClient();
+        Classes.Landlord user;
 
-        public LandlordMainPage()
+        string numBathrooms, numBedrooms, rent, address;
+
+        public LandlordCreateHousePage()
         {
             InitializeComponent();
+
             httpClient.BaseAddress = new Uri(ApplicationResources.BaseURI);
             var userJSON = App.Current.Properties["user"] as string;
 
             user = JsonConvert.DeserializeObject<Classes.Landlord>(userJSON);
+        }
 
+        void NumBedroomsChanged(object sender, EventArgs e)
+        {
+            numBedrooms = ((Entry)sender).Text;
+        }
+
+        void NumBathroomsChanged(object sender, EventArgs e)
+        {
+            numBathrooms = ((Entry)sender).Text;
+        }
+
+        void RentPriceChanged(object sender, EventArgs e)
+        {
+            rent = ((Entry)sender).Text;
+        }
+
+        void AddressChanged(object sender, EventArgs e)
+        {
+            address = ((Entry)sender).Text;
         }
 
         async void OnCreateHouse(object sender, EventArgs e)
         {
-            /*Classes.House testHouse = new Classes.House();
-            testHouse.numBedrooms = 4;
-            testHouse.numBathrooms = 1;
-
             var values = new Dictionary<String, String>
             {
-                {"numBedrooms", testHouse.numBedrooms.ToString() },
-                {"numBathrooms", testHouse.numBathrooms.ToString() }
+                {"numBedrooms", numBedrooms },
+                {"numBathrooms", numBathrooms },
+                {"rent", rent },
+                {"address", address }
             };
 
             string payload = JsonConvert.SerializeObject(values);
@@ -52,12 +71,13 @@ namespace QHouseMobile
 
                 Debug.WriteLine(responseString);
 
-            } catch (Exception exception)
+                await Navigation.PopAsync();
+
+            }
+            catch (Exception exception)
             {
                 Debug.WriteLine(exception);
-            }*/
-
-            await Navigation.PushAsync(new LandlordCreateHousePage());
+            }
         }
     }
 }

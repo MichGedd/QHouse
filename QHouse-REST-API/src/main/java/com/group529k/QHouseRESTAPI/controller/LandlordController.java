@@ -36,7 +36,7 @@ public class LandlordController {
     }
 
     @GetMapping
-    public Landlord getStudent(@RequestParam Integer id)
+    public @ResponseBody Landlord getLandlord(@RequestParam Integer id)
     {
         if(landlordRepository.findById(id).isPresent())
         {
