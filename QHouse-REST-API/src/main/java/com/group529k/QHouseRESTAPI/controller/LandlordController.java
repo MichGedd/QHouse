@@ -35,8 +35,8 @@ public class LandlordController {
         return "false";
     }
 
-    @GetMapping
-    public @ResponseBody Landlord getLandlord(@RequestParam Integer id)
+    @GetMapping(value = "/{id}")
+    public @ResponseBody Landlord getLandlord(@PathVariable Integer id)
     {
         if(landlordRepository.findById(id).isPresent())
         {

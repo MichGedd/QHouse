@@ -35,8 +35,8 @@ public class StudentController {
         return "false";
     }
 
-    @GetMapping
-    public @ResponseBody Student getStudent(@RequestParam Integer id)
+    @GetMapping(value = "/{id}")
+    public @ResponseBody Student getStudent(@PathVariable Integer id)
     {
         if(studentRepository.findById(id).isPresent())
         {

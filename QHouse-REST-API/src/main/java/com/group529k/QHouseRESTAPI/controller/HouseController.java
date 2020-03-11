@@ -8,6 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/house")
 public class HouseController {
@@ -33,5 +39,45 @@ public class HouseController {
         }
 
         return "Failed";
+    }
+
+    @GetMapping
+    private @ResponseBody List<House> getAllHouses()
+    {
+        List<House> returnList = new ArrayList<>();
+        houseRepository.findAll().forEach(returnList::add);
+        return returnList;
+    }
+
+    @GetMapping
+    private @ResponseBody List<House> getHouseWithParams(@RequestParam Optional<Integer> numBathrooms,
+                                                         @RequestParam Optional<Integer> numBedrooms,
+                                                         @RequestParam Optional<Double> minPrice,
+                                                         @RequestParam Optional<Double> maxPrice)
+    {
+        List<House> returnList = new ArrayList<>();
+        houseRepository.findAll().forEach(returnList::add);
+
+        if(numBathrooms.isPresent())
+        {
+            returnList = returnList.stream().filter(n -> n.getNumBathrooms() >= numBathrooms.get()).collect(Collectors.toList());
+        }
+
+        if(numBedrooms.isPresent())
+        {
+            returnList = returnList.stream().filter(n -> n.getNumBedrooms() == numBedrooms.get()).collect(Collectors.toList());
+        }
+
+        if(minPrice.isPresent())
+        {
+            returnList = returnList.stream().filter(n -> n.getRent() >= minPrice.get()).collect(Collectors.toList());
+        }
+
+        if(maxPrice.isPresent())
+        {
+            returnList = returnList.stream().filter(n -> n.getRent() <= maxPrice.get()).collect(Collectors.toList());
+        }
+
+        return returnList;
     }
 }
