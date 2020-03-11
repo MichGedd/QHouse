@@ -43,6 +43,10 @@ namespace QHouseMobile
 
         async void OnLoginClicked(object sender, EventArgs e)
         {
+
+            await Navigation.PushAsync(new StudentMainPage());
+            return;
+
             if (!String.Equals(password, "") && !String.Equals(email, ""))
             {
                 var values = new Dictionary<String, String>
@@ -80,8 +84,6 @@ namespace QHouseMobile
                     else
                         App.Current.Properties.Add("user", user);
 
-                    /*Classes.Student student = JsonConvert.DeserializeObject<Classes.Student>(user);
-                    Debug.WriteLine("name: " + student.name + " email: " + student.email);*/
 
                     if (isStudent)
                         await Navigation.PushAsync(new StudentMainPage());

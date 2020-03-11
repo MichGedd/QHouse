@@ -6,10 +6,29 @@
              mc:Ignorable="d"
              x:Class="QHouseMobile.StudentMainPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Left"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"/>
+
+            <Button Text="Right"
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Grid.RowSpan="2"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
