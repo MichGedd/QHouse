@@ -69,7 +69,7 @@ namespace QHouseMobile
                     }
 
                     apiEndpoint = isStudent ? "student" : "landlord";
-                    apiEndpoint = $"{apiEndpoint}?id={id}";
+                    apiEndpoint = $"{apiEndpoint}/{id}";
                     Debug.WriteLine(apiEndpoint);
                     var user = await httpClient.GetStringAsync(apiEndpoint);
 

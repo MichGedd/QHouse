@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/house")
 public class HouseController {
@@ -33,5 +36,13 @@ public class HouseController {
         }
 
         return "Failed";
+    }
+
+    @GetMapping
+    private @ResponseBody List<House> getAllHouses()
+    {
+        List<House> returnList = new ArrayList<>();
+        houseRepository.findAll().forEach(returnList::add);
+        return returnList;
     }
 }
