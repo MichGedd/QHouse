@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="QHouseMobile.LandlordCreateHousePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Number Bedrooms"
+                   Keyboard="Numeric"
+                   TextChanged="NumBedroomsChanged"/>
+
+            <Entry Placeholder="Number Bathrooms"
+                   Keyboard="Numeric"
+                   TextChanged="NumBathroomsChanged"/>
+
+            <Entry Placeholder="Rent"
+                   Keyboard="Numeric"
+                   TextChanged="RentPriceChanged"/>
+
+            <Entry Placeholder="Address"
+                   TextChanged="AddressChanged"/>
+
+            <Button Text="Create House"
+                    Clicked="OnCreateHouse"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

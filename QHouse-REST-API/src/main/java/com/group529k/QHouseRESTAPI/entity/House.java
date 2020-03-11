@@ -15,6 +15,8 @@ public class House {
 
     private int numBedrooms;
     private int numBathrooms;
+    private double rent;
+    private String address;
 
     public int getNumBedrooms() {
         return numBedrooms;
@@ -38,5 +40,21 @@ public class House {
 
     public void setLandlord(Landlord landlord) {
         this.landlord = landlord;
+    }
+
+    public double getRent() {
+        return rent;
+    }
+
+    public void setRent(double rent) {
+        this.rent = rent;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
