@@ -29,6 +29,20 @@
                         Grid.Row="1"
                         Grid.Column="3"
                         Grid.RowSpan="2"/>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Label Text="{Binding HouseNumBedrooms}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseNumBathrooms}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseRent}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseAddress}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
