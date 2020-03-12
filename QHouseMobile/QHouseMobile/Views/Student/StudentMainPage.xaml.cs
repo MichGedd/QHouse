@@ -20,6 +20,8 @@ namespace QHouseMobile
         private string houseRent;
         private string houseAddress;
 
+        private int houseIndex = 0;
+
         private Classes.Student user;
 
         HttpClient httpClient = new HttpClient();
@@ -74,34 +76,44 @@ namespace QHouseMobile
 
             //user = JsonConvert.DeserializeObject<Classes.Student>(userJSON);
 
-            HouseNumBedrooms = "4";
-            HouseNumBathrooms = "4";
-            HouseRent = "$1500.00";
-            HouseAddress = "123 Street St";
-
             try
             {
-                //string httpGet = httpClient.GetStringAsync("/house").Wait();
+                houseIndex = 0;
                 getHouses();
+                
             } catch(Exception e)
             {
                 Debug.WriteLine(e);
             }
         }
 
-        public async void getHouses()
+        async void getHouses()
         {
             var housesJSON = await httpClient.GetStringAsync("/house");
-
             houseList = JsonConvert.DeserializeObject<List<Classes.House>>(housesJSON);
 
-            Debug.WriteLine(housesJSON);
+            updateHouseDisplay();  //This works its just really slow.  Should probably fix later
+        }
 
-            foreach(Classes.House h in houseList)
-            {
-                Debug.WriteLine(h.rent);
-            }
+        void updateHouseDisplay()
+        {
+            Classes.House h = houseList.ElementAt(houseIndex);
+            HouseNumBedrooms = h.numBedrooms.ToString();
+            HouseNumBathrooms = h.numBathrooms.ToString();
+            HouseRent = h.rent.ToString();
+            HouseAddress = h.address;
+        }
 
+        void LeftButtonClicked(object sender, EventArgs e)
+        {
+            houseIndex = houseIndex == 0 ? houseList.Count - 1 : houseIndex - 1;
+            updateHouseDisplay();
+        }
+
+        void RightButtonClicked(object sender, EventArgs e)
+        {
+            houseIndex = houseIndex == houseList.Count - 1 ? 0 : houseIndex + 1;
+            updateHouseDisplay();
         }
     }
 }
