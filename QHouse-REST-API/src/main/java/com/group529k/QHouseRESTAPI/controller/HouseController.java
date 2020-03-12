@@ -49,7 +49,7 @@ public class HouseController {
         return returnList;
     }
 
-    @GetMapping
+    @GetMapping(path = "/param")
     private @ResponseBody List<House> getHouseWithParams(@RequestParam Optional<Integer> numBathrooms,
                                                          @RequestParam Optional<Integer> numBedrooms,
                                                          @RequestParam Optional<Double> minPrice,

@@ -9,5 +9,7 @@ namespace QHouseMobile.Classes
         public int id { get; set; }
         public int numBedrooms { get; set; }
         public int numBathrooms { get; set; }
+        public double rent { get; set; }
+        public string address { get; set; }
     }
 }

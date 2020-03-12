@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +19,11 @@ namespace QHouseMobile
         private string houseNumBathrooms;
         private string houseRent;
         private string houseAddress;
+
+        private Classes.Student user;
+
+        HttpClient httpClient = new HttpClient();
+        List<Classes.House> houseList;
 
         public string HouseNumBedrooms
         {
@@ -60,10 +68,40 @@ namespace QHouseMobile
         {
             InitializeComponent();
             BindingContext = this;
+            httpClient.BaseAddress = new Uri(ApplicationResources.BaseURI);
+
+            //var userJSON = App.Current.Properties["user"] as string;
+
+            //user = JsonConvert.DeserializeObject<Classes.Student>(userJSON);
+
             HouseNumBedrooms = "4";
             HouseNumBathrooms = "4";
             HouseRent = "$1500.00";
             HouseAddress = "123 Street St";
+
+            try
+            {
+                //string httpGet = httpClient.GetStringAsync("/house").Wait();
+                getHouses();
+            } catch(Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
+
+        public async void getHouses()
+        {
+            var housesJSON = await httpClient.GetStringAsync("/house");
+
+            houseList = JsonConvert.DeserializeObject<List<Classes.House>>(housesJSON);
+
+            Debug.WriteLine(housesJSON);
+
+            foreach(Classes.House h in houseList)
+            {
+                Debug.WriteLine(h.rent);
+            }
+
         }
     }
 }
