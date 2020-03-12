@@ -21,6 +21,7 @@
 
             <Button Text="Login"
                     Clicked="OnLoginClicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -6,10 +6,46 @@
              mc:Ignorable="d"
              x:Class="QHouseMobile.StudentMainPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Left"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Clicked="LeftButtonClicked"/>
+
+            <Button Text="Right"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Grid.RowSpan="2"
+                    Clicked="RightButtonClicked"/>
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Label Text="{Binding HouseNumBedrooms, StringFormat='Number of Bedrooms: {0:N}'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseNumBathrooms, StringFormat='Number of Bathrooms: {0:N}'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseRent, StringFormat='Rent: ${0:F2}'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding HouseAddress, StringFormat='Address: {0}'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
